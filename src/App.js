@@ -1,92 +1,83 @@
-import logo from "./logo.svg";
 import "./App.css";
+import Navbar from "react-bootstrap/Navbar";
+import Nav from "react-bootstrap/Nav";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import ReactMapGL from "react-map-gl";
+import React, { useRef, useEffect, useState } from "react";
+import mapboxgl from "mapbox-gl";
 
-const favBooks = [
-  {
-    id: 1,
-    title: "The Songs of W.E.B. Dubois ",
-    author: "Honorée Fanonne Jeffers",
-    isbn: "9780008516482",
-    isFiveStar: true,
-  },
-  {
-    id: 2,
-    title: "Their Eyes Were Watching God Novel",
-    author: "Zora Neale Hurston",
-    isbn: "9780060838676",
-    isFiveStar: false,
-  },
-  {
-    id: 3,
-    title: "The Outsiders",
-    author: "S.E Hilton",
-    isbn: "9780060838676",
-    isFiveStar: false,
-  },
-  {
-    id: 4,
-    title: "Bud, Not Buddy",
-    author: "Christopher Paul Curtis",
-    isbn: "9780060838676",
-    isFiveStar: true,
-  },
-  {
-    id: 5,
-    title: "Get a Life, Chloe Brown",
-    author: "Talia Hibbert",
-    isbn: "9780062941206",
-    isFiveStar: false,
-  },
-];
-
-function ChooseBook() {
-  function setNum() {
-    const bookNum = Math.floor(Math.random() * 5) + 1;
-
-    alert(
-      `Book Genie suggests that you start with book #${bookNum} from the list of books below.`
-    );
-  }
-  return (
-    <button onClick={setNum}>Unsure of what to read? Ask the Book Genie</button>
-  );
-}
-function DisplayBooks() {
-  const booklist = favBooks.map((book) => (
-    <li key={book.id} style={{ color: book.isFiveStar ? "blue" : "orange" }}>
-      {book.title} by {book.author}
-    </li>
-  ));
-  return <ol>{booklist}</ol>;
-}
-
-function InfoLegend() {
-  return (
-    <div>
-      <h1> Fav Book List Legend: </h1>
-      <p> Blue = 5 Stars </p>
-      <p>Orange = 4 Stars</p>
-    </div>
-  );
-}
 function App() {
+  mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_TOKEN;
+  const mapContainer = useRef(null);
+  const map = useRef(null);
+  const [lng, setLng] = useState(-84.4521678);
+  const [lat, setLat] = useState(42.7320307);
+  const [zoom, setZoom] = useState(10);
+  useEffect(() => {
+    if (map.current) return; // initialize map only once
+    map.current = new mapboxgl.Map({
+      container: mapContainer.current,
+      style: "mapbox://styles/mapbox/streets-v12",
+      center: [lng, lat],
+      zoom: zoom,
+    });
+  });
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Kimberly's React App w/ Components !!!!
-        </a>
-        <InfoLegend />
-        <ChooseBook />
-        <DisplayBooks />
+        <link
+          rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+          crossorigin="anonymous"
+        />
+        <Navbar bg="dark" expand="lg" className="nav-contents">
+          <Navbar.Brand>brand</Navbar.Brand>
+          <Nav className="ml-auto">
+            <Nav.Item>
+              <Nav.Link href="/home">Sign Up/ Sign In</Nav.Link>
+            </Nav.Item>
+            <Nav.Item>
+              <Nav.Link href="/home">Contact</Nav.Link>
+            </Nav.Item>
+          </Nav>
+        </Navbar>
       </header>
+      <br></br>
+      <Container fluid>
+        <Row>
+          <Col className="search-col" md="4">
+            LOCATION
+          </Col>
+          <Col className="search-col" md="1">
+            $ PRICE
+          </Col>
+          <Col className="search-col" md="1">
+            BEDROOMS
+          </Col>
+          <Col className="search-col" md="2">
+            MOVE-IN DATE
+          </Col>
+          <Col className="search-col" md="1">
+            ALL FILTERS
+          </Col>
+        </Row>
+      </Container>
+      <br></br>
+      <Container fluid>
+        <Row>
+          <Col className="search-col" md="7">
+            <div>
+              <div ref={mapContainer} className="map-container" />
+            </div>
+          </Col>
+          <Col className="search-col" md="4">
+            apatments
+          </Col>
+        </Row>
+      </Container>
     </div>
   );
 }
