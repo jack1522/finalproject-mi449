@@ -4,7 +4,7 @@ import Nav from "react-bootstrap/Nav";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import ReactMapGL from "react-map-gl";
+
 import React, { useRef, useEffect, useState } from "react";
 import mapboxgl from "mapbox-gl";
 
@@ -12,9 +12,9 @@ function App() {
   mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_TOKEN;
   const mapContainer = useRef(null);
   const map = useRef(null);
-  const [lng, setLng] = useState(-84.4521678);
-  const [lat, setLat] = useState(42.7320307);
-  const [zoom, setZoom] = useState(10);
+  const [lng] = useState(-84.4521678);
+  const [lat] = useState(42.7320307);
+  const [zoom] = useState(10);
   useEffect(() => {
     if (map.current) return; // initialize map only once
     map.current = new mapboxgl.Map({
@@ -24,6 +24,7 @@ function App() {
       zoom: zoom,
     });
   });
+
   return (
     <div className="App">
       <header className="App-header">
