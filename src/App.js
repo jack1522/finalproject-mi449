@@ -23,6 +23,7 @@ function App() {
   };
 
   const [zoom] = useState(12);
+
   useEffect(() => {
     if (!map.current) {
       map.current = new mapboxgl.Map({
@@ -37,6 +38,7 @@ function App() {
         essential: true,
       });
     }
+    // eslint-disable-next-line
   }, [selectedLoco, zoom]);
 
   const locoChange = (value) => {
