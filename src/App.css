@@ -9,11 +9,20 @@
 }
 
 .search-col {
-  border: 1px solid;
-  border-radius: 5px;
-  margin: 2px;
 }
 
 .map-container {
   height: 80vh;
+}
+
+#filtBtn {
+  background-color: pink;
+  border-color: pink;
+}
+
+.App {
+}
+
+hr {
+  margin: 0;
 }
