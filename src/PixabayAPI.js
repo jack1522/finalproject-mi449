@@ -14,7 +14,7 @@ function PixabayAPI({ query }) {
     };
     fetchImage();
   }, [query]);
-  return <div>{image && <Image src={image.webformatURL} />}</div>;
+  return <div>{<Image src={image.webformatURL} />}</div>;
 }
 
 export default PixabayAPI;

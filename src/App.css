@@ -8,21 +8,26 @@
   color: white;
 }
 
+.nav-contents {
+  background-color: #041a64;
+}
 .search-col {
 }
 
 .map-container {
   height: 80vh;
-}
-
-#filtBtn {
-  background-color: pink;
-  border-color: pink;
+  border-color: #ffc300;
+  border: 1px solid #ffc300;
 }
 
 .App {
+  background-color: #ebebeb;
 }
 
-hr {
-  margin: 0;
+#filterButton {
+  background-color: #041a64;
+  border-color: #ffc300;
+}
+
+#navlink {
 }

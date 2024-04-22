@@ -6,7 +6,14 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import React, { useRef, useEffect, useState } from "react";
 import mapboxgl from "mapbox-gl";
-import { Dropdown, DropdownButton, Form } from "react-bootstrap";
+import { Dropdown, DropdownButton, Form, Button } from "react-bootstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faSearch,
+  faDollarSign,
+  faBed,
+  faSliders,
+} from "@fortawesome/free-solid-svg-icons";
 
 import GetApt from "./GetApt";
 
@@ -54,14 +61,20 @@ function App() {
           integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
           crossorigin="anonymous"
         />
-        <Navbar bg="dark" expand="lg" className="nav-contents">
-          <Navbar.Brand>ReApt Michigan</Navbar.Brand>
+        <Navbar expand="lg" className="nav-contents">
+          <Navbar.Brand className="text-white">
+            Reactify MI Apartments
+          </Navbar.Brand>
           <Nav className="ml-auto">
             <Nav.Item>
-              <Nav.Link href="/home">Sign Up/ Sign In</Nav.Link>
+              <Nav.Link href="#" className="text-white">
+                Sign Up/ Sign In
+              </Nav.Link>
             </Nav.Item>
             <Nav.Item>
-              <Nav.Link href="/home">Contact</Nav.Link>
+              <Nav.Link href="#" className="text-white">
+                Contact
+              </Nav.Link>
             </Nav.Item>
           </Nav>
         </Navbar>
@@ -69,21 +82,38 @@ function App() {
       <br></br>
       <Container fluid>
         <Row>
-          <Col className="search-col d grid" md="3">
+          <Col className="search-col d grid" md="4">
             <DropdownButton
-              title="Select a Location"
+              title={
+                <span className="text-left">
+                  <FontAwesomeIcon icon={faSearch} /> SELECT A LOCATION
+                </span>
+              }
               onSelect={locoChange}
-              className="d-grid"
+              className="d-grid w-100"
+              id="filterButton"
             >
               <Dropdown.Item eventKey="East Lansing" className="w-100">
                 East Lansing
               </Dropdown.Item>
-              <Dropdown.Item eventKey="Kalamazoo">Kalamazoo</Dropdown.Item>
-              <Dropdown.Item eventKey="Royal Oak">Royal Oak</Dropdown.Item>
+              <Dropdown.Item eventKey="Kalamazoo" className="w-100">
+                Kalamazoo
+              </Dropdown.Item>
+              <Dropdown.Item eventKey="Royal Oak" className="w-100">
+                Royal Oak
+              </Dropdown.Item>
             </DropdownButton>
           </Col>
           <Col className="search-col d-grid" md="2">
-            <DropdownButton title="$ Price" className="d-grid">
+            <DropdownButton
+              title={
+                <span className="text-left">
+                  <FontAwesomeIcon icon={faDollarSign} /> PRICE
+                </span>
+              }
+              className="d-grid"
+              id="filterButton"
+            >
               <Form>
                 <Form.Group>
                   <Form.Label> Min Price :</Form.Label>
@@ -104,7 +134,10 @@ function App() {
           </Col>
           <Col className="search-col d-grid" md="2">
             <Dropdown className="d-grid">
-              <Dropdown.Toggle> Bedrooms</Dropdown.Toggle>
+              <Dropdown.Toggle id="filterButton">
+                {" "}
+                <FontAwesomeIcon icon={faBed} /> BEDROOMS
+              </Dropdown.Toggle>
               <Dropdown.Menu>
                 <Form>
                   <Form.Check type="checkbox" label="Studio"></Form.Check>
@@ -113,6 +146,11 @@ function App() {
                 </Form>
               </Dropdown.Menu>
             </Dropdown>
+          </Col>
+          <Col md="2">
+            <Button id="filterButton">
+              <FontAwesomeIcon icon={faSliders} /> ALL FILTERS
+            </Button>
           </Col>
         </Row>
       </Container>

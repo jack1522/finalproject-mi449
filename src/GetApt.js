@@ -23,8 +23,8 @@ function GetApt({ selectedLoco }) {
             <hr />
             <Row>
               <Col xs={12} md={6}>
-                <h3>{a.aptName}</h3>
-                <p>{a.location}, MI</p>
+                <h3 className="mb-0">{a.aptName}</h3>
+                <p className="mb-0">{a.location}, MI</p>
               </Col>
               <Col xs={12} md={6}>
                 <h3 className="text-right">&#9734;</h3>
